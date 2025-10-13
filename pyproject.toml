@@ -1,0 +1,83 @@
+# Configuración para desarrollo
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+addopts = "-v --tb=short"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+]
+
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "white-bg-generator"
+dynamic = ["version"]
+description = "Generador de fondos blancos para imágenes usando IA"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Tu Nombre", email = "tu.email@example.com"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "rembg[gpu]==2.0.57",
+    "Pillow>=10.0.0",
+    "opencv-python>=4.8.0",
+    "numpy>=1.24.0",
+    "click>=8.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+]
+gpu = [
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/tu-usuario/White-BG-Gen"
+Repository = "https://github.com/tu-usuario/White-BG-Gen.git"
+Issues = "https://github.com/tu-usuario/White-BG-Gen/issues"
+
+[project.scripts]
+white-bg-gen = "main:main"
