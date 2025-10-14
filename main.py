@@ -44,18 +44,24 @@ except ImportError as e:
               help='Mostrar información detallada')
 @click.option('--gpu/--no-gpu', default=True,
               help='Usar GPU para acelerar procesamiento')
+@click.option('--output-format', default='white-bg',
+              type=click.Choice(['white-bg', 'transparent-png']),
+              help='Formato de salida: fondo blanco o PNG transparente')
 def main(input_path: str, output: Optional[str], model: str, resize: Optional[int],
-         prefix: str, recursive: bool, quality: int, verbose: bool, gpu: bool):
+         prefix: str, recursive: bool, quality: int, verbose: bool, gpu: bool, output_format: str):
     """
-    Cambia el fondo de imágenes a blanco RGB(255,255,255).
+    Procesa imágenes para cambiar el fondo a blanco o crear PNG transparente.
     
     INPUT_PATH puede ser un archivo de imagen o un directorio con imágenes.
     
     Ejemplos:
     
     \b
-        # Procesar una imagen
+        # Procesar una imagen con fondo blanco
         python main.py imagen.jpg -o resultado.jpg
+        
+        # Crear PNG transparente
+        python main.py imagen.jpg -o resultado.png --output-format transparent-png
         
         # Procesar todas las imágenes de un directorio
         python main.py fotos/ -o resultados/
@@ -63,8 +69,8 @@ def main(input_path: str, output: Optional[str], model: str, resize: Optional[in
         # Usar modelo específico y redimensionar
         python main.py imagen.jpg -o resultado.jpg -m u2netp --resize 1024
         
-        # Procesar recursivamente con prefijo personalizado
-        python main.py fotos/ -o resultados/ -r --prefix processed_
+        # Procesar recursivamente con PNG transparente
+        python main.py fotos/ -o resultados/ -r --output-format transparent-png
     """
     
     # Configurar logging si es verbose
@@ -76,6 +82,7 @@ def main(input_path: str, output: Optional[str], model: str, resize: Optional[in
     # Mostrar información inicial
     click.echo(click.style("🎨 White Background Generator", fg='blue', bold=True))
     click.echo(f"Modelo: {model}")
+    click.echo(f"Formato de salida: {'PNG transparente' if output_format == 'transparent-png' else 'Fondo blanco'}")
     
     try:
         # Inicializar generador
@@ -114,7 +121,10 @@ def main(input_path: str, output: Optional[str], model: str, resize: Optional[in
             if len(image_files) == 1:
                 input_file = image_files[0]
                 name, ext = os.path.splitext(input_file)
-                output = f"{name}_white_bg{ext}"
+                if output_format == 'transparent-png':
+                    output = f"{name}_transparent.png"
+                else:
+                    output = f"{name}_white_bg{ext}"
             else:
                 output = "output/"
         
@@ -126,12 +136,29 @@ def main(input_path: str, output: Optional[str], model: str, resize: Optional[in
             input_file = image_files[0]
             click.echo(f"🔄 Procesando: {os.path.basename(input_file)}")
             
+            # Ajustar extensión según formato de salida
+            if output_format == 'transparent-png' and output and not output.lower().endswith('.png'):
+                name, _ = os.path.splitext(output)
+                output = f"{name}.png"
+            
             with click.progressbar(length=100, label='Procesando') as bar:
-                result = generator.process_image(
-                    input_file, 
-                    output_path=output,
-                    resize_max=resize
-                )
+                if output_format == 'transparent-png':
+                    # Solo remover fondo, mantener transparencia
+                    result = generator.remove_background(input_file)
+                    if resize:
+                        from src.utils import resize_image
+                        result = resize_image(result, resize)
+                    if output:
+                        from src.utils import ensure_output_directory
+                        ensure_output_directory(output)
+                        result.save(output, "PNG")
+                else:
+                    # Procesamiento normal con fondo blanco
+                    result = generator.process_image(
+                        input_file, 
+                        output_path=output,
+                        resize_max=resize
+                    )
                 bar.update(100)
             
             # Mostrar información del resultado
@@ -153,14 +180,28 @@ def main(input_path: str, output: Optional[str], model: str, resize: Optional[in
                         # Generar nombre de salida
                         filename = os.path.basename(input_file)
                         name, ext = os.path.splitext(filename)
-                        output_file = os.path.join(output, f"{prefix}{name}{ext}")
                         
-                        # Procesar imagen
-                        generator.process_image(
-                            input_file,
-                            output_path=output_file,
-                            resize_max=resize
-                        )
+                        # Ajustar extensión según formato de salida
+                        if output_format == 'transparent-png':
+                            output_file = os.path.join(output, f"{prefix}{name}.png")
+                        else:
+                            output_file = os.path.join(output, f"{prefix}{name}{ext}")
+                        
+                        # Procesar imagen según formato
+                        if output_format == 'transparent-png':
+                            # Solo remover fondo, mantener transparencia
+                            result = generator.remove_background(input_file)
+                            if resize:
+                                from src.utils import resize_image
+                                result = resize_image(result, resize)
+                            result.save(output_file, "PNG")
+                        else:
+                            # Procesamiento normal con fondo blanco
+                            generator.process_image(
+                                input_file,
+                                output_path=output_file,
+                                resize_max=resize
+                            )
                         success_count += 1
                         
                     except Exception as e:
