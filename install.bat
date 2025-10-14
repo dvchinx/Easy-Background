@@ -1,6 +1,6 @@
 @echo off
 REM Script de instalación para Windows - White Background Generator
-REM Autor: Tu Nombre
+REM Autor: Jesus Florez
 
 echo 🎨 Configurando White Background Generator...
 
