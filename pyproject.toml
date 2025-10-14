@@ -41,7 +41,7 @@ description = "Generador de fondos blancos para imágenes usando IA"
 readme = "README.md"
 license = {file = "LICENSE"}
 authors = [
-    {name = "Tu Nombre", email = "tu.email@example.com"}
+    {name = "Jesus Florez"}
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
