@@ -1,7 +1,5 @@
-#!/bin/bash
-
 # Script de instalación y configuración para White Background Generator
-# Autor: Tu Nombre
+# Autor: Jesus Florez
 # Fecha: $(date)
 
 echo "🎨 Configurando White Background Generator..."
