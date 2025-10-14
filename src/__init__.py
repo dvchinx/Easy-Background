@@ -4,8 +4,7 @@ Módulo para cambiar fondos de imágenes a blanco RGB(255,255,255)
 """
 
 __version__ = "1.0.0"
-__author__ = "Tu Nombre"
-__email__ = "tu.email@example.com"
+__author__ = "Jesus Florez"
 
 from .white_bg_generator import WhiteBGGenerator
 
