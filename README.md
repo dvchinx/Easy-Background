@@ -7,9 +7,9 @@
 ![AI](https://img.shields.io/badge/AI-Computer%20Vision-orange.svg)
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen.svg)
 
-[![GitHub stars](https://img.shields.io/github/stars/dvchinx/White-Background?style=social)](https://github.com/dvchinx/White-Background/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/dvchinx/White-Background?style=social)](https://github.com/dvchinx/White-Background/network/members)
-[![GitHub issues](https://img.shields.io/github/issues/dvchinx/White-Background)](https://github.com/dvchinx/White-Background/issues)
+[![GitHub stars](https://img.shields.io/github/stars/dvchinx/White-Background?style=social)](https://github.com/dvchinx/Easy-Background/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/dvchinx/White-Background?style=social)](https://github.com/dvchinx/Easy-Background/network/members)
+[![GitHub issues](https://img.shields.io/github/issues/dvchinx/White-Background)](https://github.com/dvchinx/Easy-Background/issues)
 
 </div>
 
@@ -82,8 +82,8 @@ python main.py examples/character.png -o examples/character_transparent.png --ou
 
 ```bash
 # 1. Clonar el repositorio
-git clone https://github.com/dvchinx/White-BG-Gen.git
-cd White-BG-Gen
+git clone https://github.com/dvchinx/Easy-Background.git
+cd Easy-Background
 
 # 2. Ejecutar instalador automático
 # Windows
@@ -275,7 +275,7 @@ Este proyecto está bajo la **Licencia MIT**. Ver el archivo [`LICENSE`](LICENSE
 
 **⭐ Si este proyecto te fue útil, ¡dale una estrella!** 
 
-[![GitHub stars](https://img.shields.io/github/stars/dvchinx/White-Background?style=social)](https://github.com/dvchinx/White-Background/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/dvchinx/White-Background?style=social)](https://github.com/dvchinx/Easy-Background/stargazers)
 
 **🔗 Comparte con la comunidad**
 
