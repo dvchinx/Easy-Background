@@ -1,5 +1,5 @@
 """
-White Background Generator - CLI
+Easy Background - CLI
 Interfaz de línea de comandos para cambiar fondos de imágenes a blanco
 """
 
@@ -17,7 +17,7 @@ from PIL import Image
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
 
 try:
-    from src.white_bg_generator import WhiteBGGenerator
+    from src.background_remover import BackgroundRemover
     from src.utils import validate_image_path, get_file_list, format_file_size
 except ImportError as e:
     print(f"Error importando módulos: {e}")
@@ -34,7 +34,7 @@ except ImportError as e:
               help='Modelo de segmentación a usar')
 @click.option('--resize', type=int, metavar='SIZE',
               help='Redimensionar imagen a tamaño máximo (mantiene proporción)')
-@click.option('--prefix', default='white_bg_',
+@click.option('--prefix', default='processed_',
               help='Prefijo para archivos de salida en procesamiento por lotes')
 @click.option('--recursive', '-r', is_flag=True,
               help='Buscar imágenes recursivamente en subdirectorios')
@@ -80,14 +80,14 @@ def main(input_path: str, output: Optional[str], model: str, resize: Optional[in
                           format='%(asctime)s - %(levelname)s - %(message)s')
     
     # Mostrar información inicial
-    click.echo(click.style("🎨 White Background Generator", fg='blue', bold=True))
+    click.echo(click.style("🎨 Easy Background", fg='blue', bold=True))
     click.echo(f"Modelo: {model}")
     click.echo(f"Formato de salida: {'PNG transparente' if output_format == 'transparent-png' else 'Fondo blanco'}")
     
     try:
         # Inicializar generador
         click.echo("Inicializando generador...")
-        generator = WhiteBGGenerator(model_name=model, enable_gpu=gpu)
+        generator = BackgroundRemover(model_name=model, enable_gpu=gpu)
         
         # Mostrar información del modelo
         if verbose:
@@ -124,7 +124,7 @@ def main(input_path: str, output: Optional[str], model: str, resize: Optional[in
                 if output_format == 'transparent-png':
                     output = f"{name}_transparent.png"
                 else:
-                    output = f"{name}_white_bg{ext}"
+                    output = f"{name}_processed{ext}"
             else:
                 output = "output/"
         
@@ -228,7 +228,7 @@ def main(input_path: str, output: Optional[str], model: str, resize: Optional[in
 
 @click.group()
 def cli():
-    """White Background Generator - Herramientas para cambiar fondos a blanco"""
+    """Easy Background - Herramientas para cambiar fondos a blanco"""
     pass
 
 
@@ -253,7 +253,7 @@ def models():
 @click.option('--model', default='u2net', help='Modelo a probar')
 def test(model: str):
     """Prueba si el generador funciona correctamente"""
-    click.echo(click.style("🧪 Probando White Background Generator...", fg='blue', bold=True))
+    click.echo(click.style("🧪 Probando Easy Background...", fg='blue', bold=True))
     
     try:
         # Crear imagen de prueba
@@ -264,7 +264,7 @@ def test(model: str):
         draw.ellipse([50, 50, 250, 250], fill='blue')
         
         # Inicializar generador
-        generator = WhiteBGGenerator(model_name=model)
+        generator = BackgroundRemover(model_name=model)
         
         # Mostrar información
         model_info = generator.get_model_info()

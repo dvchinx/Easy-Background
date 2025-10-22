@@ -35,13 +35,13 @@ requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "white-bg-generator"
+name = "easy-background"
 dynamic = ["version"]
 description = "Generador de fondos blancos para imágenes usando IA"
 readme = "README.md"
 license = {file = "LICENSE"}
 authors = [
-    {name = "Jesus Florez"}
+    {name = "Jesús Flórez"}
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -75,9 +75,9 @@ gpu = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/tu-usuario/White-BG-Gen"
-Repository = "https://github.com/tu-usuario/White-BG-Gen.git"
-Issues = "https://github.com/tu-usuario/White-BG-Gen/issues"
+Homepage = "https://github.com/dvchinx/Easy-Background"
+Repository = "https://github.com/dvchinx/Easy-Background.git"
+Issues = "https://github.com/dvchinx/Easy-Background/issues"
 
 [project.scripts]
-white-bg-gen = "main:main"
+easy-background = "main:main"

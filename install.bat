@@ -1,8 +1,8 @@
 @echo off
-REM Script de instalación para Windows - White Background Generator
-REM Autor: Jesus Florez
+REM Script de instalación para Windows - Easy Background
+REM Autor: Jesús Flórez
 
-echo 🎨 Configurando White Background Generator...
+echo 🎨 Configurando Easy Background...
 
 REM Verificar Python
 python --version >nul 2>&1

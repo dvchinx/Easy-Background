@@ -1,5 +1,5 @@
 """
-Utilidades para el White Background Generator
+Utilidades para Easy Background
 """
 
 import os

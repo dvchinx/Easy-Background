@@ -1,4 +1,4 @@
-# White Background Generator
+# Easy Background
 
 <div align="center">
 
@@ -7,9 +7,9 @@
 ![AI](https://img.shields.io/badge/AI-Computer%20Vision-orange.svg)
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen.svg)
 
-[![GitHub stars](https://img.shields.io/github/stars/dvchinx/White-Background?style=social)](https://github.com/dvchinx/Easy-Background/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/dvchinx/White-Background?style=social)](https://github.com/dvchinx/Easy-Background/network/members)
-[![GitHub issues](https://img.shields.io/github/issues/dvchinx/White-Background)](https://github.com/dvchinx/Easy-Background/issues)
+[![GitHub stars](https://img.shields.io/github/stars/dvchinx/Easy-Background?style=social)](https://github.com/dvchinx/Easy-Background/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/dvchinx/Easy-Background?style=social)](https://github.com/dvchinx/Easy-Background/network/members)
+[![GitHub issues](https://img.shields.io/github/issues/dvchinx/Easy-Background)](https://github.com/dvchinx/Easy-Background/issues)
 
 </div>
 
@@ -155,10 +155,10 @@ python main.py fotos/ -o resultados/ --output-format transparent-png
 ### Usar como módulo de Python
 
 ```python
-from src.white_bg_generator import WhiteBGGenerator
+from src.background_remover import BackgroundRemover
 
 # Crear el generador
-generator = WhiteBGGenerator()
+generator = BackgroundRemover()
 
 # Procesar una imagen
 result = generator.process_image("input.jpg")
@@ -200,10 +200,10 @@ python main.py models
 ## Estructura del proyecto
 
 ```
-White-BG-Gen/
+Easy-Background/
 ├── src/
 │   ├── __init__.py
-│   ├── white_bg_generator.py    # Módulo principal
+│   ├── background_remover.py    # Módulo principal
 │   └── utils.py                 # Utilidades
 ├── examples/                    # Imágenes de ejemplo
 ├── tests/                       # Tests unitarios
@@ -275,7 +275,7 @@ Este proyecto está bajo la **Licencia MIT**. Ver el archivo [`LICENSE`](LICENSE
 
 **⭐ Si este proyecto te fue útil, ¡dale una estrella!** 
 
-[![GitHub stars](https://img.shields.io/github/stars/dvchinx/White-Background?style=social)](https://github.com/dvchinx/Easy-Background/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/dvchinx/Easy-Background?style=social)](https://github.com/dvchinx/Easy-Background/stargazers)
 
 **🔗 Comparte con la comunidad**
 

@@ -1,8 +1,8 @@
-# Script de instalación y configuración para White Background Generator
-# Autor: Jesus Florez
+# Script de instalación y configuración para Easy Background
+# Autor: Jesús Flórez
 # Fecha: $(date)
 
-echo "🎨 Configurando White Background Generator..."
+echo "🎨 Configurando Easy Background..."
 
 # Verificar Python
 if ! command -v python &> /dev/null; then

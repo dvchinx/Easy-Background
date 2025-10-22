@@ -1,4 +1,4 @@
-# Makefile para White Background Generator
+# Makefile para Easy Background
 
 .PHONY: install test clean lint format examples help
 
@@ -10,7 +10,7 @@ PIP = $(VENV_PYTHON) -m pip
 
 # Comandos principales
 help: ## Mostrar esta ayuda
-	@echo "White Background Generator - Comandos disponibles:"
+	@echo "Easy Background - Comandos disponibles:"
 	@echo ""
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  %-15s %s\n", $$1, $$2}'
 
@@ -65,7 +65,7 @@ dev-install: ## Instalación para desarrollo
 
 benchmark: ## Ejecutar benchmark básico
 	@echo "Ejecutando benchmark..."
-	$(VENV_PYTHON) -c "import time; from src.white_bg_generator import WhiteBGGenerator; from PIL import Image; img = Image.new('RGB', (1024, 1024), 'red'); gen = WhiteBGGenerator(); start = time.time(); gen.process_image(img); print(f'Tiempo: {time.time()-start:.2f}s')"
+	$(VENV_PYTHON) -c "import time; from src.background_remover import BackgroundRemover; from PIL import Image; img = Image.new('RGB', (1024, 1024), 'red'); gen = BackgroundRemover(); start = time.time(); gen.process_image(img); print(f'Tiempo: {time.time()-start:.2f}s')"
 
 # Comandos de desarrollo
 dev: install examples test-basic ## Configuración completa para desarrollo

@@ -1,11 +1,11 @@
 """
-White Background Generator Package
+Easy Background Package
 Módulo para cambiar fondos de imágenes a blanco RGB(255,255,255)
 """
 
 __version__ = "1.0.0"
-__author__ = "Jesus Florez"
+__author__ = "Jesús Flórez"
 
-from .white_bg_generator import WhiteBGGenerator
+from .background_remover import BackgroundRemover
 
-__all__ = ["WhiteBGGenerator"]
+__all__ = ["BackgroundRemover"]

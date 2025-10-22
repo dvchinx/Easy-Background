@@ -1,6 +1,6 @@
 """
-White Background Generator
-Módulo principal para cambiar fondos de imágenes a blanco RGB(255,255,255)
+Easy Background - Background Remover
+Módulo principal para remover fondos y cambiar a blanco RGB(255,255,255)
 """
 
 import os
@@ -30,13 +30,13 @@ except ImportError:
     )
 
 
-class WhiteBGGenerator:
+class BackgroundRemover:
     """
-    Generador de fondos blancos para imágenes.
+    Removedor de fondos para imágenes.
     
     Esta clase permite remover el fondo de una imagen y reemplazarlo
-    con un fondo blanco RGB(255,255,255) usando diferentes métodos
-    de segmentación.
+    con un fondo blanco RGB(255,255,255) o dejarlo transparente,
+    usando diferentes métodos de segmentación.
     """
     
     AVAILABLE_MODELS = [
@@ -49,7 +49,7 @@ class WhiteBGGenerator:
     
     def __init__(self, model_name: str = 'u2net', enable_gpu: bool = True):
         """
-        Inicializa el generador de fondos blancos.
+        Inicializa el removedor de fondos.
         
         Args:
             model_name (str): Nombre del modelo a usar para segmentación
@@ -245,7 +245,7 @@ class WhiteBGGenerator:
     
     def process_batch(self, input_paths: List[str], output_dir: str,
                      resize_max: Optional[int] = None,
-                     prefix: str = "white_bg_") -> List[str]:
+                     prefix: str = "processed_") -> List[str]:
         """
         Procesa múltiples imágenes en lote.
         
